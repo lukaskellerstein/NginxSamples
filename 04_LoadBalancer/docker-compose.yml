@@ -1,0 +1,33 @@
+version: '2'
+
+services:
+
+  proxy:
+    image: mynginx
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    links:
+        - testapp1
+        - testapp2
+        - testapp3
+    ports:
+      - 8080:80
+
+  testapp1:
+    image: testapp1
+    build:
+      context: ./app1
+      dockerfile: Dockerfile
+
+  testapp2:
+    image: testapp2
+    build:
+      context: ./app2
+      dockerfile: Dockerfile
+
+  testapp3:
+    image: testapp3
+    build: 
+      context: ./app3
+      dockerfile: Dockerfile
